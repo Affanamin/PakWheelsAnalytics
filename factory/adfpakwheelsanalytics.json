@@ -1,0 +1,9 @@
+{
+	"name": "adfpakwheelsanalytics",
+	"location": "uaenorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a07c9c30-6475-4851-9181-d2a3779bda31",
+		"tenantId": "99ab3059-72a7-4603-804e-ab2116634426"
+	}
+}
