@@ -1,0 +1,41 @@
+{
+	"name": "LandingToBronze_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageForCsv",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkContainerName": {
+				"type": "string"
+			},
+			"sinkFileName": {
+				"type": "string"
+			},
+			"sinkFolderName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sinkFileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sinkFolderName",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sinkContainerName",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
