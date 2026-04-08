@@ -124,6 +124,13 @@ Includes:
 
 Each dimension uses surrogate keys and is built for analytical consistency.
 
+<p align="center"> <img src="figures/synapse-1.png" width="900"> </p>
+<p align="center"> <img src="figures/synapse-2.png" width="900"> </p>
+<p align="center"> <img src="figures/synapse-3.png" width="900"> </p>
+<p align="center"> <img src="figures/synapse-4.png" width="900"> </p>
+<p align="center"> <img src="figures/synapse-5.png" width="900"> </p>
+<p align="center"> <img src="figures/synapse-6.png" width="900"> </p>
+
 ### ♻️ Incremental Processing Strategy
 ✔ Watermark‑based incremental ingestion from source
 ✔ Delta Lake handles upserts and versioning gracefully
