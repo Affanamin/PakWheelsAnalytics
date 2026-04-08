@@ -24,6 +24,8 @@ Which listings are fast‑moving vs slow‑moving?
 
 ### 🏗️ High‑Level Architecture
 
+<p align="center"> <img src="figures/highlevel_arch.png" width="900"> </p>
+
 Pakwheels Website
         |
         | (Python Scraper – Selenium + BeautifulSoup)
