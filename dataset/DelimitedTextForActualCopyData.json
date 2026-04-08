@@ -1,0 +1,179 @@
+{
+	"name": "DelimitedTextForActualCopyData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageForCsv",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderName": {
+				"type": "string"
+			},
+			"fileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folderName",
+					"type": "Expression"
+				},
+				"fileSystem": "landing"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "MakeModel",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Mileage",
+				"type": "String"
+			},
+			{
+				"name": "FuelType",
+				"type": "String"
+			},
+			{
+				"name": "Transmission",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Colour",
+				"type": "String"
+			},
+			{
+				"name": "ManufactureType",
+				"type": "String"
+			},
+			{
+				"name": "EngineCapacity",
+				"type": "String"
+			},
+			{
+				"name": "CarType",
+				"type": "String"
+			},
+			{
+				"name": "PostLastUpdatedat",
+				"type": "String"
+			},
+			{
+				"name": "CarAddress",
+				"type": "String"
+			},
+			{
+				"name": "Demand",
+				"type": "String"
+			},
+			{
+				"name": "Alloy Wheels",
+				"type": "String"
+			},
+			{
+				"name": "Front Fog Lights",
+				"type": "String"
+			},
+			{
+				"name": "DRLs",
+				"type": "String"
+			},
+			{
+				"name": "Sun Roof",
+				"type": "String"
+			},
+			{
+				"name": "ABS",
+				"type": "String"
+			},
+			{
+				"name": "Air Bags",
+				"type": "String"
+			},
+			{
+				"name": "Air Conditioning",
+				"type": "String"
+			},
+			{
+				"name": "Alloy Rims",
+				"type": "String"
+			},
+			{
+				"name": "Infotainment System",
+				"type": "String"
+			},
+			{
+				"name": "Front Speakers",
+				"type": "String"
+			},
+			{
+				"name": "Rear Speakers",
+				"type": "String"
+			},
+			{
+				"name": "Steering Switches",
+				"type": "String"
+			},
+			{
+				"name": "Paddle Shifters",
+				"type": "String"
+			},
+			{
+				"name": "Traction Control",
+				"type": "String"
+			},
+			{
+				"name": "Front Camera",
+				"type": "String"
+			},
+			{
+				"name": "Rear Camera",
+				"type": "String"
+			},
+			{
+				"name": "Immobilizer Key",
+				"type": "String"
+			},
+			{
+				"name": "Power Locks",
+				"type": "String"
+			},
+			{
+				"name": "Power Steering",
+				"type": "String"
+			},
+			{
+				"name": "Cool Box",
+				"type": "String"
+			},
+			{
+				"name": "Cruise Control",
+				"type": "String"
+			},
+			{
+				"name": "Climate Control",
+				"type": "String"
+			}
+		]
+	}
+}
