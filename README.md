@@ -92,6 +92,8 @@ Includes:
         <li> Stored as Delta format </li>
 </ul>
 
+<p align="center"> <img src="figures/ADF_comp.png" width="900"> </p>
+
 ### 🧩 Dimensional Modeling
 ##### ✅ Fact Table
 
