@@ -26,120 +26,101 @@ Which listings are fast‑moving vs slow‑moving?
 
 <p align="center"> <img src="figures/highlevel_arch.png" width="900"> </p>
 
-Pakwheels Website
-        |
-        | (Python Scraper – Selenium + BeautifulSoup)
-        v
-Azure Data Lake (Landing Zone - CSV)
-        |
-        | (Spark Data Quality & Validation)
-        v
-Landing/GoodDataFolder (Clean CSV)
-        |
-        | (ADF Copy Activity)
-        v
-Bronze Layer (Parquet, Snappy Compression)
-        |
-        | (Databricks – Cleaning, Business Rules)
-        v
-Silver Layer (Delta, Partitioned)
-        |
-        | (Databricks – Facts, Dimensions, SCD Type 2)
-        v
-Gold Layer (Delta – Analytics Ready)
-        |
-        | (Synapse Serverless External Tables)
-        v
-Power BI / Tableau / SQL Analytics
-
-
 ### 🔍 Data Source
 
 #### Source: PakWheels (Used car listings)
 ##### Data Acquisition:
 
-Python Web Scraping
-Selenium (dynamic pages)
-BeautifulSoup (HTML parsing)
-
+<ul>
+<li> Python Web Scraping </li>
+<li> Selenium (dynamic pages) </li>
+<li> BeautifulSoup (HTML parsing) </li>
+</ul>
 
 #### Data Attributes:
-
-Car details (brand, model, year, engine, fuel)
-Features (safety, comfort, tech)
-Pricing & mileage
-Location
-Listing timestamps
+<ul>
+<li> Car details (brand, model, year, engine, fuel) </li>
+<li> Features (safety, comfort, tech) </li>
+<li> Pricing & mileage </li>
+<li> Location </li>
+<li> Listing timestamps </li>
+</ul>
 
 ### 🧱 Medallion Architecture
 
 #### 🔹 Landing Layer
 
-Raw scraped data stored as CSV
-No schema enforcement
-Acts as the system of record
+<ul>
+<li> Raw scraped data stored as CSV </li>
+<li> No schema enforcement </li>
+<li> Acts as the system of record </li>
+</ul>
 
 #### 🔹 Bronze Layer
 
-Created using Azure Data Factory
-Data copied from Landing GoodDataFolder
-Stored as Parquet with Snappy compression
-Minimal transformation
-Incremental ingestion using watermarking
-
+<ul>
+<li> Created using Azure Data Factory </li>
+<li> Data copied from Landing GoodDataFolder </li>
+<li> Stored as Parquet with Snappy compression </li>
+<li> Minimal transformation </li>
+<li> Incremental ingestion using watermarking </li>
+</ul>
+        
 #### 🔹 Silver Layer
 
 Processed using Azure Databricks
 Major transformations applied:
 
-Data quality checks
-Data validation rules
-Null handling & standardization
-Typecasting
-Business logic application
-
-Stored as Delta tables
-Partitioned for performance
+<ul>
+<li> Data quality checks </li>
+<li> Data validation rules </li>
+<li> Null handling & standardization </li>
+<li> Typecasting </li>
+<li> Business logic application </li>
+<li> Stored as Delta tables </li>
+<li> Partitioned for performance </li>
+</ul>
 
 #### 🔹 Gold Layer
-
-Analytics‑ready data
-Modeled using Star Schema
+<ul>
+<li> Analytics‑ready data
+<li> Modeled using Star Schema
 Includes:
-
-Fact tables (car listings)
-Dimension tables (car, date, location, features)
-
-Slowly Changing Dimension (SCD Type 2) implemented using hash‑based change detection
-Stored as Delta format
-
+        <li> Fact tables (car listings) </li>
+        <li> Dimension tables (car, date, location, features) </li>
+        <li> Slowly Changing Dimension (SCD Type 2) implemented using hash‑based change detection </li>
+        <li> Stored as Delta format </li>
+</ul>
 
 ### 🧩 Dimensional Modeling
 ##### ✅ Fact Table
 
 ###### fact_listings
-Grain: 1 row = 1 car listing
-Measures:
-
-DemandPKR
-Mileage
-ListingAgeDays
-CarAge
+###### Grain: 1 row = 1 car listing
+#### Measures:
+<ul>
+<li> DemandPKR </li>
+<li> Mileage </li>
+<li> ListingAgeDays </li>
+<li> CarAge </li>
+</ul>
 
 
 ###### Foreign Keys:
-
-car_dim_id
-date_dim_id
-location_dim_id
-car_features_dim_id
+<ul>
+<li> car_dim_id </li>
+<li> date_dim_id </li>
+<li> location_dim_id </li>
+<li> car_features_dim_id </li>
+</ul>
 
 #### ✅ Dimension Tables
-
-dim_car (SCD‑2)
-dim_date
-dim_location
-dim_car_features
+<ul>
+<li> dim_car (SCD‑2)  </li>
+<li> dim_date </li>
+<li> dim_location </li>
+<li> dim_car_features </li>
+</ul>
 
 Each dimension uses surrogate keys and is built for analytical consistency.
 
@@ -151,74 +132,84 @@ Each dimension uses surrogate keys and is built for analytical consistency.
 
 ### 🔐 Security & Governance
 
-Azure Key Vault
-  Stores secrets and sensitive connection strings
-Managed Identity
-  Secure service‑to‑service authentication
-IAM / RBAC
-  Role‑based access control
-No secrets hard‑coded
+##### Azure Key Vault
+  <ul> <li> Stores secrets and sensitive connection strings </li> </ul>
+  
+#### Managed Identity
+  <ul> <li> Secure service‑to‑service authentication </li> </ul>
+
+##### IAM / RBAC
+  <ul> <li> Role‑based access control </li> </ul>
+  <ul> <li> No secrets hard‑coded </li> </ul>
 
 ### 🚨 Monitoring & Alerts
-
-Azure Data Factory
-Orchestration & pipelines
-Azure Logic Apps
-Alerts on pipeline failure
-Notifications for operational issues
+<ul>
+<li> Azure Data Factory </li>
+<li> Orchestration & pipelines </li>
+<li> Azure Logic Apps </li>
+<li> Alerts on pipeline failure </li>
+<li> Notifications for operational issues </li>
+</ul>
 
 ### 🔌 Analytics & BI Integration
 
-Synapse Serverless SQL
-External tables created over Delta Lake
-Enables direct SQL analytics
-BI Tools Supported
-Power BI
-Tableau
-
+<ul>
+<li> Synapse Serverless SQL </li>
+<li> External tables created over Delta Lake </li>
+<li> Enables direct SQL analytics </li>
+<li> BI Tools Supported </li>
+<li> Power BI </li>
+<li> Tableau </li>
+</ul>
 
 #### Star schema exposed to BI
-Clean joins
-High performance
-Business‑friendly model
+<ul>
+<li> Clean joins </li>
+<li> High performance </li>
+<li> Business‑friendly model </li>
+</ul>
 
 ### 📊 Sample Business Queries Enabled
-
-Average price by city & brand
-Monthly listing volume trend
-Feature score vs price analysis
-Data quality vs listing age
-Mileage vs price buckets
-Fast‑moving vs slow‑moving inventory
+<ul>
+<li> Average price by city & brand </li>
+<li> Monthly listing volume trend </li>
+<li> Feature score vs price analysis </li>
+<li> Data quality vs listing age </li>
+<li> Mileage vs price buckets </li>
+<li> Fast‑moving vs slow‑moving inventory </li>
+</ul>
 
 ### 🧠 Key Learnings & Highlights
-
-Built a production‑grade medallion architecture
-Implemented incremental pipelines end‑to‑end
-Applied SCD Type‑2 correctly in Delta Lake
-Designed BI‑ready dimensional models
-Integrated security, alerting, governance
-Worked with real, messy, scraped data
+<ul>
+<li> Built a production‑grade medallion architecture </li>
+<li> Implemented incremental pipelines end‑to‑end </li>
+<li> Applied SCD Type‑2 correctly in Delta Lake </li>
+<li> Designed BI‑ready dimensional models </li>
+<li> Integrated security, alerting, governance </li>
+<li> Worked with real, messy, scraped data </li>
+</ul>
 
 ### 🚀 Future Enhancements
-
-Add ML models (price prediction, demand forecasting)
-Implement Data Quality metrics framework
-Create feature importance analysis
-Introduce row‑level security in Power BI
-Optimize performance using Z‑ORDER and OPTIMIZE
+<ul>
+<li> Add ML models (price prediction, demand forecasting) </li>
+<li> Implement Data Quality metrics framework </li>
+<li> Create feature importance analysis </li>
+<li> Introduce row‑level security in Power BI </li>
+<li> Optimize performance using Z‑ORDER and OPTIMIZE </li>
+</ul>
 
 ### 🧑‍💻 Tech Stack
-
-Python (Selenium, BeautifulSoup)
-Azure Data Lake Storage Gen2
-Azure Data Factory
-Azure Databricks
-Azure Synapse (Serverless SQL)
-Delta Lake
-Power BI / Tableau
-Azure Key Vault
-Azure Logic Apps
+<ul>
+<li> Python (Selenium, BeautifulSoup) </li>
+<li> Azure Data Lake Storage Gen2 </li>
+<li> Azure Data Factory </li>
+<li> Azure Databricks </li>
+<li> Azure Synapse (Serverless SQL) </li>
+<li> Delta Lake </li>
+<li> Power BI / Tableau </li>
+<li> Azure Key Vault </li>
+<li> Azure Logic Apps </li>
+</ul>
 
 ### ✅ Conclusion
 This project demonstrates end‑to‑end data engineering capability, from raw real‑world data ingestion to analytics & business insights, following modern cloud and data architecture best practices.
